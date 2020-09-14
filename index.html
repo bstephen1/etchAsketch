@@ -1,0 +1,47 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Etch A Sketch</title>
+  <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+  <div id='container'>
+	  <div class='padding'>
+			<h1 class='title'>MAGIC</h1>
+			<div id='options'>
+				<form>
+					<label for='gridOn'>Show Grid</label>
+					<input type='checkbox' id='gridOn'>
+				</form>
+				<form>
+					<label for='gradient'>Gradient</label>
+					<input type='checkbox' id='gradient'>
+				</form>
+				<form>
+					<label for='random'>Random Colors</label>
+					<input type='checkbox' id='random'>
+				</form>
+				<form>
+					<label for='holdMode'>Click and Drag Mode</label>
+					<input type='checkbox' id='holdMode'>
+				</form>
+				<button id='reset'>Reset</button>
+			</div>
+		</div>
+		<div id='containerMid'>
+			<div class='padding'>
+				<h1 id='etchTitle' class='title'>Etch A Sketch</h1>
+			</div>
+			<div id='grid'></div>
+			<div class='padding'></div>
+		</div>
+		<div id='rightPadding' class='padding'>
+			<h1 class='title'>SCREEN</h1>
+		</div>
+  </div>
+ <script src="script.js"></script>
+</body>
+</html>

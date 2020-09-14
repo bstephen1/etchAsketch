@@ -1,0 +1,55 @@
+
+#grid {
+	display: grid;
+	flex: 2;
+	justify-content: center;
+	align-items: center;
+	border: 1px solid blue;
+	height: 600px;
+	width: 600px;
+}
+
+#container {
+	display: flex;
+	border: 1px solid red;
+	height: 100%;
+}
+
+
+html, body {
+	height: 100%;
+	background: hsla(360, 99%, 34%, 1); 
+}
+
+.gridSquare {
+	border: '';
+	background: hsla(332, 19%, 85%, 1);
+	height: 100%;
+}
+
+.padding {
+	flex: 1;
+	border: 1px solid blue;
+}
+
+
+.title {
+	text-align: center;
+	color: hsla(27, 48%, 46%, 1);
+  text-shadow: -2px 2px 4px rgba(0, 0, 0, 0.5), 2px -2px 0 rgba(255, 255, 255, 0.9); 
+}
+
+#options {
+	border: 1px solid black;
+	height: 30vw;
+	padding: 5px;
+}
+
+
+@font-face {
+	font-family: "heart";
+	src: url("AlwaysInMyHeart.ttf");
+}
+#etchTitle {
+	font-family: "heart";
+}
