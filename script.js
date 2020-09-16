@@ -1,8 +1,13 @@
 const grid = document.querySelector('#grid');
 const defaultGridSize = 15;
 const gridBorderStyle = '1px solid green';
-let etchColor = '#000';
+let etchColor = 'black';
 let isMouseHeld = false;
+//user choice for hsl. Used to keep track of gradient
+let userH = 0;
+let userS = 0;
+let userL = 0;
+const gridOn = document.querySelector('input[id=gridOn]');
 //used as l value in hsl color function
 const gradArr = [
 	'50',
@@ -36,7 +41,11 @@ function createGrid(rows) {
 
 function addGridListeners() {
 	const squares = document.querySelectorAll('.gridSquare');
-	squares.forEach(square => square.addEventListener('mouseover', (e) => {gridListenerFun(e);}));
+	squares.forEach(square => {
+		//check for grid on init (separate from eventlistener)
+		if (gridOn.checked) {square.style.border = gridBorderStyle;}
+		square.addEventListener('mouseover', (e) => {gridListenerFun(e);})
+	});
 }
 
 function gridListenerFun(e) {
@@ -51,7 +60,11 @@ function gridListenerFun(e) {
 //uses global gridArr to set bg color
 	if (gradient.checked) {
 		g = e.target.dataset.gradient;
-		e.target.style.background = gradArr[g]; 
+		if (random.checked) {
+			userH = Math.floor(Math.random()*101);
+			userS = Math.floor(Math.random()*101);
+		}
+		e.target.style.background = `hsl(${userH}, ${userS}%, ${gradArr[g]}%)`; 
 		if (g < 10) {
 			e.target.dataset.gradient = Number(g) + 1;
 		}
@@ -82,7 +95,6 @@ resetGrid();
 const reset = document.querySelector('#reset');
 reset.addEventListener('click', resetGrid);
 
-const gridOn = document.querySelector('input[id=gridOn]');
 gridOn.addEventListener('change', () => {
 	const squares = document.querySelectorAll('.gridSquare');
 	if(gridOn.checked) {
@@ -92,3 +104,19 @@ gridOn.addEventListener('change', () => {
 		squares.forEach(square => square.style.border = '');		
 	}
 });
+
+const random = document.querySelector('input[id=random]');
+random.addEventListener('change', () => {
+	if(!random.checked) {etchColor = 'black';}
+});
+
+//color buttons
+const colors = document.querySelectorAll('.color');
+colors.forEach(
+	color => color.addEventListener('click', (e) => {
+			etchColor = getComputedStyle(e.target).backgroundColor;
+		})
+);
+
+const colorPicker = document.querySelector('#colorPicker');
+colorPicker.addEventListener('change', (e) => etchColor = e.target.value);

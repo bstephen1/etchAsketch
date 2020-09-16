@@ -1,4 +1,5 @@
 
+
 #grid {
 	display: grid;
 	flex: 2;
@@ -35,16 +36,79 @@ html, body {
 
 .title {
 	text-align: center;
-	color: hsla(27, 48%, 46%, 1);
+	color: hsla(27, 48%, 46%, 1); 
   text-shadow: -2px 2px 4px rgba(0, 0, 0, 0.5), 2px -2px 0 rgba(255, 255, 255, 0.9); 
 }
 
-#options {
+label, p {
+	color: hsla(27, 48%, 75%, 1);
+  text-shadow: -2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.options {
 	border: 1px solid black;
 	height: 30vw;
 	padding: 5px;
 }
 
+#colorBox {
+	border: 1px solid black;
+	background: hsla(332, 19%, 85%, 1);
+	border-radius: 10px;
+	
+}
+
+#defaultColors {
+	display: grid;
+	grid-template-columns: 50% 1fr;
+}
+
+
+.color {
+	border-color: blue;
+	margin: 3px; 
+	border-radius: 10px;
+	height: 20px;
+}
+
+#color1 {
+	background-color: hsla(0, 0%, 0%, 1);
+}
+
+#color2 {
+	background-color: hsla(37, 82%, 50%, 1);
+}
+
+#color3 {
+	background-color: hsla(104, 77%, 50%, 1);
+}
+
+#color4 {
+	background-color: hsla(178, 81%, 50%, 1);
+}
+
+#color5 {
+	background-color: hsla(309, 100%, 72%, 1);
+}
+
+#color6 {
+	background-color: hsla(55, 100%, 50%, 1);
+}
+
+#color7 {
+	background-color: hsla(355, 81%, 50%, 1);
+}
+
+#color8 {
+	background-color: hsla(287, 80%, 39%, 1);
+}
+
+#colorPicker {
+	width: 90%;
+	height: 22px;
+	margin: 5px;
+
+}
 
 @font-face {
 	font-family: "heart";

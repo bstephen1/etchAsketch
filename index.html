@@ -11,22 +11,22 @@
   <div id='container'>
 	  <div class='padding'>
 			<h1 class='title'>MAGIC</h1>
-			<div id='options'>
+			<div class='options'>
 				<form>
-					<label for='gridOn'>Show Grid</label>
 					<input type='checkbox' id='gridOn'>
+					<label for='gridOn'>Show Grid</label>
 				</form>
 				<form>
-					<label for='gradient'>Gradient</label>
 					<input type='checkbox' id='gradient'>
+					<label for='gradient'>Gradient</label>
 				</form>
 				<form>
-					<label for='random'>Random Colors</label>
 					<input type='checkbox' id='random'>
+					<label for='random'>Random Colors</label>
 				</form>
 				<form>
-					<label for='holdMode'>Click and Drag Mode</label>
 					<input type='checkbox' id='holdMode'>
+					<label for='holdMode'>Click and Drag Mode</label>
 				</form>
 				<button id='reset'>Reset</button>
 			</div>
@@ -40,6 +40,22 @@
 		</div>
 		<div id='rightPadding' class='padding'>
 			<h1 class='title'>SCREEN</h1>
+			<div class='options'>
+				<p>Pick a Color</p>
+				<div id=colorBox>
+					<div id=defaultColors>
+						<button class='color'id='color1'></button>
+						<button class='color'id='color2'></button>
+						<button class='color'id='color3'></button>
+						<button class='color'id='color4'></button>
+						<button class='color'id='color5'></button>
+						<button class='color'id='color6'></button>
+						<button class='color'id='color7'></button>
+						<button class='color'id='color8'></button>
+					</div>
+					<input id='colorPicker' type='color' value='#000'>
+				</div>
+			</div>
 		</div>
   </div>
  <script src="script.js"></script>
