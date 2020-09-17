@@ -3,23 +3,36 @@
 #grid {
 	display: grid;
 	flex: 2;
+	border: 1px solid gray;
+  box-shadow: 0px 0px 14px 3px rgba(51,51,51,1);
 	justify-content: center;
 	align-items: center;
-	border: 1px solid blue;
 	height: 600px;
 	width: 600px;
 }
 
+#appContainer{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
 #container {
 	display: flex;
-	border: 1px solid red;
-	height: 100%;
+	align-items: center;
+	justify-content: center;
+	width: 1145px;
+	height: 729px;
+	border-radius: 10px;
+	border: 2px solid hsla(360, 99%, 18%, 1);
+	background: hsla(360, 99%, 34%, 1); 
+  box-shadow: 0px 0px 14px 3px rgba(51,51,51,1);
 }
 
 
 html, body {
 	height: 100%;
-	background: hsla(360, 99%, 34%, 1); 
+	background: gray; 
 }
 
 .gridSquare {
@@ -30,9 +43,23 @@ html, body {
 
 .padding {
 	flex: 1;
-	border: 1px solid blue;
 }
 
+.containerLow {
+	height: 33%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.circle {
+  height: 150px;
+  width: 150px;
+  background-color: #DCD9CD;
+  border-radius: 50%;
+	border: 1px solid gray;
+  box-shadow: 0px 0px 14px 3px rgba(51,51,51,1);
+}
 
 .title {
 	text-align: center;
@@ -46,9 +73,8 @@ label, p {
 }
 
 .options {
-	border: 1px solid black;
-	height: 30vw;
-	padding: 5px;
+	height: 433px;
+	padding: 10px;
 }
 
 #colorBox {
@@ -63,12 +89,28 @@ label, p {
 	grid-template-columns: 50% 1fr;
 }
 
+#reset{
+	border-color: gray;
+	margin: 5px;	
+	border-radius: 10px;
+	height: 30px;
+	width: 100%;
+}
 
 .color {
-	border-color: blue;
+	border-color: gray;
 	margin: 3px; 
 	border-radius: 10px;
 	height: 20px;
+}
+
+.color:hover, #reset:hover {
+	box-shadow: 0 1px #666;
+}
+
+.color:active, #reset:active {
+	box-shadow: 0 1px #666;
+  transform: translateY(1px) translateX(1px);
 }
 
 #color1 {

@@ -8,6 +8,7 @@
 
 </head>
 <body>
+  <div id='appContainer'>
   <div id='container'>
 	  <div class='padding'>
 			<h1 class='title'>MAGIC</h1>
@@ -28,7 +29,15 @@
 					<input type='checkbox' id='holdMode'>
 					<label for='holdMode'>Click and Drag Mode</label>
 				</form>
+				<br>
+				<div>
+				<label>Resize<br><input type='range' id='gridSize' min='3' max='25'></label>
+				</div>
+				<br>
 				<button id='reset'>Reset</button>
+			</div>
+			<div class='containerLow'>
+				<div class='circle'></div>
 			</div>
 		</div>
 		<div id='containerMid'>
@@ -53,11 +62,15 @@
 						<button class='color'id='color7'></button>
 						<button class='color'id='color8'></button>
 					</div>
-					<input id='colorPicker' type='color' value='#000'>
+					<input id='colorPicker' class='color' type='color' value='#000'>
 				</div>
+			</div>
+			<div class='containerLow'>
+				<div class='circle'></div>
 			</div>
 		</div>
   </div>
+</div>
  <script src="script.js"></script>
 </body>
 </html>

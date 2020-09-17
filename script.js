@@ -8,6 +8,7 @@ let userH = 0;
 let userS = 0;
 let userL = 0;
 const gridOn = document.querySelector('input[id=gridOn]');
+const gridSize = document.querySelector('#gridSize');
 //used as l value in hsl color function
 const gradArr = [
 	'50',
@@ -30,7 +31,6 @@ document.body.onmouseup = () => isMouseHeld = false;
 function createGrid(rows) {
 	grid.style.gridTemplateRows = `repeat(${rows}, 1fr)`;
 	grid.style.gridTemplateColumns = `repeat(${rows}, 1fr)`;
-	console.log(grid.style);
 
 	for (let i = 0; i < rows; i++) {
 		for (let j = 0; j < rows; j++) {
@@ -56,7 +56,6 @@ function gridListenerFun(e) {
 		etchColor = `#${Math.floor(Math.random()*16777215).toString(16)}`;		
 		//maybe make this hsl so it's compatible with gradient mode
 	}	
-
 //uses global gridArr to set bg color
 	if (gradient.checked) {
 		g = e.target.dataset.gradient;
@@ -79,21 +78,26 @@ function gridListenerFun(e) {
 }
 
 
-function resetGrid() {
+
+
+function resetGrid(size) {
 	grid.innerHTML = '';
-	etchColor = '#000';
-	createGrid(defaultGridSize);	
+	etchColor = 'black';
+	gridSize.value = size;
+	createGrid(size);	
 	addGridListeners();
+	console.log(etchColor);
 }
 
 
+
 //initial grid setup
-resetGrid();
+resetGrid(defaultGridSize);
 
 
 //functions for options div
 const reset = document.querySelector('#reset');
-reset.addEventListener('click', resetGrid);
+reset.addEventListener('click', () => resetGrid(defaultGridSize));
 
 gridOn.addEventListener('change', () => {
 	const squares = document.querySelectorAll('.gridSquare');
@@ -120,3 +124,5 @@ colors.forEach(
 
 const colorPicker = document.querySelector('#colorPicker');
 colorPicker.addEventListener('change', (e) => etchColor = e.target.value);
+
+gridSize.addEventListener('change', (e) => resetGrid(e.target.value));
