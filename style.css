@@ -55,7 +55,7 @@ html, body {
 .circle {
   height: 150px;
   width: 150px;
-  background-color: #DCD9CD;
+  background-color: white;
   border-radius: 50%;
 	border: 1px solid gray;
   box-shadow: 0px 0px 14px 3px rgba(51,51,51,1);

@@ -3,10 +3,10 @@ const defaultGridSize = 15;
 const gridBorderStyle = '1px solid green';
 let etchColor = 'black';
 let isMouseHeld = false;
-//user choice for hsl. Used to keep track of gradient
-let userH = 0;
-let userS = 0;
-let userL = 0;
+//user choice for rgb. Used to keep track of color for gradient
+let userR = 0;
+let userG = 0;
+let userB = 0;
 const gridOn = document.querySelector('input[id=gridOn]');
 const gridSize = document.querySelector('#gridSize');
 //used as l value in hsl color function
@@ -34,7 +34,7 @@ function createGrid(rows) {
 
 	for (let i = 0; i < rows; i++) {
 		for (let j = 0; j < rows; j++) {
-			grid.innerHTML += `<div id='${i}-${j}' class='gridSquare' data-gradient=0></div>`;
+			grid.innerHTML += `<div id='${i}-${j}' class='gridSquare' data-gradient=0 data-counter=1></div>`;
 		}
 	}	
 }
@@ -54,26 +54,59 @@ function gridListenerFun(e) {
 	const holdMode = document.querySelector('input[id=holdMode]');
 	if (random.checked) {
 		etchColor = `#${Math.floor(Math.random()*16777215).toString(16)}`;		
-		//maybe make this hsl so it's compatible with gradient mode
 	}	
 //uses global gridArr to set bg color
 	if (gradient.checked) {
 		g = e.target.dataset.gradient;
-		if (random.checked) {
-			userH = Math.floor(Math.random()*101);
-			userS = Math.floor(Math.random()*101);
+		//reset for random so g always represents current random color, not just initial color
+		if (random.checked) {g = 0;}
+		if (etchColor.match(/^#/)) {
+			console.log('convert hex color');
+			userR = parseInt(etchColor.charAt(1) + etchColor.charAt(2), 16);	
+			userG = parseInt(etchColor.charAt(3) + etchColor.charAt(4), 16);	
+			userB = parseInt(etchColor.charAt(5) + etchColor.charAt(6), 16);	
 		}
-		e.target.style.background = `hsl(${userH}, ${userS}%, ${gradArr[g]}%)`; 
-		if (g < 10) {
-			e.target.dataset.gradient = Number(g) + 1;
+		else {
+			splitColor = etchColor.split(' ');
+			console.log(splitColor);
+			if (splitColor != '') {
+				userR = splitColor[0].match(/\d/g).join('');
+				userG = splitColor[1].match(/\d/g).join('');
+				userB = splitColor[2].match(/\d/g).join('');
+			}
 		}
-	}
+		if (g == 0) {
+			//this is the amount subtracted each pass
+			//value of 0 means it hasn't been set yet
+			e.target.dataset.gradient = [Math.floor(userR * 0.1),
+																	 Math.floor(userG * 0.1), 
+																	 Math.floor(userB * 0.1) ];
+			
+		}
+		let gradient = e.target.dataset.gradient.split(',');
+		let counter = e.target.dataset.counter;
+		console.log('grad ' + gradient);
+		let colorArr = [userR, userG, userB];
+		console.log('before ' + colorArr);
+		for(let i = 0; i < 3; i++) {
+			colorArr[i] - gradient[i]*counter >= 0 ? colorArr[i] = colorArr[i] - gradient[i] * counter
+																		 : colorArr[i] = '0';
+		}
+		e.target.dataset.counter++;
+		if ((holdMode.checked && isMouseHeld) || !holdMode.checked) {
+			e.target.style.background = `rgb(${colorArr[0]}, ${colorArr[1]}, ${colorArr[2]})`;
+		}
+		console.log(e.target.style.background);
+		console.log('counter ' + e.target.dataset.counter);
 		
-	if (holdMode.checked && isMouseHeld) {
-		e.target.style.background = etchColor;
 	}
-	else if (!holdMode.checked && !gradient.checked) {
-		e.target.style.background = etchColor;
+	if (!gradient.checked) {	
+		if (holdMode.checked && isMouseHeld) {
+			e.target.style.background = etchColor;
+		}
+		else if (!holdMode.checked) {
+			e.target.style.background = etchColor;
+		}
 	}
 }
 
@@ -82,7 +115,7 @@ function gridListenerFun(e) {
 
 function resetGrid(size) {
 	grid.innerHTML = '';
-	etchColor = 'black';
+	etchColor = 'rgb(0, 0, 0)';
 	gridSize.value = size;
 	createGrid(size);	
 	addGridListeners();
@@ -97,7 +130,7 @@ resetGrid(defaultGridSize);
 
 //functions for options div
 const reset = document.querySelector('#reset');
-reset.addEventListener('click', () => resetGrid(defaultGridSize));
+reset.addEventListener('click', () => resetGrid(gridSize.value));
 
 gridOn.addEventListener('change', () => {
 	const squares = document.querySelectorAll('.gridSquare');
@@ -111,7 +144,7 @@ gridOn.addEventListener('change', () => {
 
 const random = document.querySelector('input[id=random]');
 random.addEventListener('change', () => {
-	if(!random.checked) {etchColor = 'black';}
+	if(!random.checked) {etchColor = '#000000';}
 });
 
 //color buttons
